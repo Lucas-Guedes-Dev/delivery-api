@@ -1,5 +1,4 @@
 from flask import current_app as app
+from auth.controllers.auth import Auth
 
-@app.route('/')
-def index():
-    return 'ola mundo'
+app.add_url_rule('/', view_func=Auth.as_view('index'))

@@ -1,9 +1,11 @@
 from typing import Any
 from flask.views import MethodView
+from requests import request
 
 class Auth(MethodView):
     def __init__(self):
         super().__init__()
     
-    def dispatch_request(self, **kwargs: Any):
-        return super().dispatch_request(**kwargs)
+    def dispatch_request(self):
+        
+        return 'ok', 200
