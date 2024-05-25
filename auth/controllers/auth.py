@@ -1,4 +1,3 @@
-from typing import Any
 from flask.views import MethodView
 from requests import request
 
