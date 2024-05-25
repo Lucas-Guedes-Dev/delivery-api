@@ -6,5 +6,9 @@ class Auth(MethodView):
         super().__init__()
     
     def dispatch_request(self):
+        if request.method == "POST":
+            pass
+        elif request.method == 'GET':
+            pass
         
         return 'ok', 200
