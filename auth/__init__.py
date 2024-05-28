@@ -1,17 +1,8 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from flask import Blueprint
 
-db = SQLAlchemy()
-migrate = Migrate()
+auth_bp = Blueprint('auth', __name__)
 
-def create_app(config_name='default'):
-    app = Flask(__name__)
-    app.config.from_object(f'config.{config_name.capitalize()}Config')
+from . import routes, models
 
-    db.init_app(app)
-    migrate.init_app(app, db)
-
-    with app.app_context():
-        from . import routes, models
-        return app
+def create_auth_app():
+    return auth_bp

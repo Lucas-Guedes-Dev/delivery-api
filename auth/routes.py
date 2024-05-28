@@ -1,5 +1,6 @@
-from flask import current_app as app
+from flask import Blueprint
 from auth.view.auth import Auth
+from auth import auth_bp  
 
-app.add_url_rule('/', view_func=Auth.as_view('index'))
-app.add_url_rule('/paraprara', view_func=Auth.as_view('view'))
+auth_bp.add_url_rule('/', view_func=Auth.as_view('index'))
+auth_bp.add_url_rule('/teste', view_func=Auth.as_view('view'))

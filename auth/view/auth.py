@@ -1,5 +1,5 @@
 from flask.views import MethodView
-from requests import request
+from flask import jsonify, request
 
 class Auth(MethodView):
     def __init__(self):
@@ -11,4 +11,4 @@ class Auth(MethodView):
         elif request.method == 'GET':
             pass
         
-        return 'ok', 200
+        return jsonify({'ok': 'ok'}), 200
