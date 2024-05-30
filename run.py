@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from auth.routes import auth_bp
+from flasgger import Swagger
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -18,7 +19,8 @@ def create_app(config_name='default'):
     # TODO *** não apague isso, é para debugar melhor a aplicalção quando preciso ***
     # with app.app_context():
     #     print_routes(app)
-
+    Swagger(app)
+    
     app.run(host="192.168.0.211", port=5050, debug=True)
 
 # TODO *** use esse metodo para debugar as endpoints que estão registrados ***
