@@ -1,9 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from auth import auth_bp
-
-import os
+from auth.routes import auth_bp
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -17,6 +15,17 @@ def create_app(config_name='default'):
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
-    app.run(host="192.168.0.84", port="5050", debug=True)
+    # TODO *** não apague isso, é para debugar melhor a aplicalção quando preciso ***
+    # with app.app_context():
+    #     print_routes(app)
 
-create_app()
+    app.run(host="192.168.0.211", port=5050, debug=True)
+
+# TODO *** use esse metodo para debugar as endpoints que estão registrados ***
+# def print_routes(app):
+#     for rule in app.url_map.iter_rules():
+#         methods = ','.join(sorted(rule.methods))
+#         print(f'{rule.endpoint}: {rule.rule} [{methods}]')
+
+if __name__ == '__main__':
+    create_app()
