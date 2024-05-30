@@ -19,7 +19,7 @@ def create_app(config_name='default'):
     # with app.app_context():
     #     print_routes(app)
 
-    app.run(host="192.168.0.211", port=5050, debug=True)
+    return app
 
 # TODO *** use esse metodo para debugar as endpoints que estão registrados ***
 # def print_routes(app):
@@ -28,4 +28,5 @@ def create_app(config_name='default'):
 #         print(f'{rule.endpoint}: {rule.rule} [{methods}]')
 
 if __name__ == '__main__':
-    create_app()
+    app = create_app()
+    app.run(host="192.168.0.211", port=5050, debug=True)
