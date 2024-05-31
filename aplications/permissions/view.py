@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from flask.views import MethodView
-from aplications.permissions.models import Permissions
+from aplications.permissions.models import PermissionsModel
 from aplications.permissions.controllers.create_permission import CreatePermission
 from aplications.permissions.controllers.get_permission import GetPermissions
 
@@ -11,9 +11,9 @@ class Permissions(MethodView):
         else:
             return GetPermissions().get_all()
 
-    def create(self):
+    def post(self):
         json_obj = request.get_json()
-        perm_obj = Permissions()
+        perm_obj = PermissionsModel()
         perm_obj.name = json_obj['name']
 
         try:    
