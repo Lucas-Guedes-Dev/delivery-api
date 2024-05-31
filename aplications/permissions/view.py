@@ -5,14 +5,11 @@ from aplications.permissions.controllers.create_permission import CreatePermissi
 from aplications.permissions.controllers.get_permission import GetPermissions
 
 class Permissions(MethodView):
-    def getId(self, id):
-        print(id)
-        get_perm = GetPermissions()
-        get_perm.get_id(id)
-        return jsonify({'message': 'temos uma rota'}), 200
-    
-    def getAll(self):
-        return jsonify({'message': 'temos uma rota'}), 200
+    def get(self, id=None):
+        if id:
+            return GetPermissions().get_id(id)
+        else:
+            return GetPermissions().get_all()
 
     def create(self):
         json_obj = request.get_json()

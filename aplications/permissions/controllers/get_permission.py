@@ -5,7 +5,13 @@ from flask import jsonify
 class GetPermissions:
     def __init__(self):
         self.olamundo = "tetadecavalo"
+        
     def get_id(self, id):
         return jsonify({
-            id : id
+            "id" : id
         }),200
+        
+    def get_all(self):
+        return jsonify({
+            "teste": 'teste'
+        }), 200
