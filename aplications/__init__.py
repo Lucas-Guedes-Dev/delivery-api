@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from flasgger import Swagger
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -9,14 +10,18 @@ def create_app(config_name='default'):
     app = Flask(__name__)
     app.config.from_object(f'config.{config_name.capitalize()}Config')
 
+    Swagger(app, template_file='swagger.yaml')
+
     db.init_app(app)
     migrate.init_app(app, db)
 
     from aplications.auth.routes import auth_bp
     from aplications.permissions.routes import permission_bp
+    from aplications.category.routes import category_bp
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(permission_bp, url_prefix='/permission')
+    app.register_blueprint(category_bp, url_prefix='/category')
     
     # TODO *** não apague isso, é para debugar melhor a aplicalção quando preciso ***
     # with app.app_context():

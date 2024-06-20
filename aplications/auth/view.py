@@ -2,12 +2,13 @@ from flask import jsonify, request
 from flask.views import MethodView
 
 class Auth(MethodView):
-    def get(self):
-        return jsonify({'message': 'temos uma rota'}), 200
-    
-    def get_id(self, id=None):
-        return jsonify({'message': f'chegou no get com id {id}'}), 200
-    
+    def get(self, id=None):
+        if id:
+            return jsonify({'message': 'chegou o id'}), 200
+        else:
+            return jsonify({'message': 'Status 200k chegou com sucesso'}), 200
+
+    # Métodos adicionais
     def post(self):
         data = request.get_json()
         return jsonify({'message': 'POST request received', 'data': data}), 201
